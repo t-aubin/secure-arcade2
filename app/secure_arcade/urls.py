@@ -29,4 +29,9 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     path('register/', views.register, name='register'),
+
+    path('game/new/', views.new_game, name='new_game'),
+    path('game/<int:game_id>/', views.game_detail, name='game_detail'),
+    path('game/<int:game_id>/move/<int:position>/', views.make_move, name='make_move'),
+    
 ]

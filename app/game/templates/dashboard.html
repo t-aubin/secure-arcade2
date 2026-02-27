@@ -6,3 +6,8 @@
     {% csrf_token %}
     <button type="submit">Logout</button>
 </form>
+
+<p>Wins: {{ user.wins }}</p>
+<p>Losses: {{ user.losses }}</p>
+<p>Games Played: {{ user.games_played }}</p>
+<p>ELO: {{ user.elo_rating }}</p>
