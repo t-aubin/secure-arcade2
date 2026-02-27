@@ -1,0 +1,47 @@
+<h1>🎮 Secure Arcade</h1>
+
+{% if user.is_authenticated %}
+    <p>Welcome {{ user.username }}!</p>
+
+    <a href="{% url 'new_game' %}">Play Tic Tac Toe</a><br>
+    <a href="{% url 'dashboard' %}">Dashboard</a><br>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+{% else %}
+    <a href="{% url 'login' %}">Login</a><br>
+    <a href="{% url 'register' %}">Register</a>
+{% endif %}
+
+<hr>
+
+<h2>🏆 Leaderboard</h2>
+
+<table border="1">
+    <tr>
+        <th>Rank</th>
+        <th>Username</th>
+        <th>Wins</th>
+        <th>Losses</th>
+        <th>Games Played</th>
+        <th>ELO</th>
+    </tr>
+
+    {% for player in leaderboard %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ player.username }}</td>
+        <td>{{ player.wins }}</td>
+        <td>{{ player.losses }}</td>
+        <td>{{ player.games_played }}</td>
+        <td>{{ player.elo_rating }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="6">No players yet.</td>
+    </tr>
+    {% endfor %}
+</table>

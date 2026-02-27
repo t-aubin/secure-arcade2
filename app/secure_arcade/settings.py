@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'game',
+    'core',
+    'tictactoe',
 ]
 
 MIDDLEWARE = [
@@ -125,4 +126,4 @@ LOGIN_URL = "login"
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
 
-AUTH_USER_MODEL = "game.CustomUser"
+AUTH_USER_MODEL = "core.CustomUser"

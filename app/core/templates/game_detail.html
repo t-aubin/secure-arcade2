@@ -1,5 +1,9 @@
 <h1>Game {{ game.id }}</h1>
 
+<a href="{% url 'new_game' %}">Start New Game</a>
+
+<a href="{% url 'home' %}">Home</a>
+
 {% if game.winner %}
     <h2>Winner: {{ game.winner }}</h2>
 {% endif %}
@@ -20,4 +24,3 @@
 </div>
 
 <br>
-<a href="{% url 'new_game' %}">Start New Game</a>

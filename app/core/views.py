@@ -1,26 +1,17 @@
-import random
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-
-from django.contrib.auth import get_user_model
+from django.contrib.auth import login, get_user_model
+from .forms import RegisterForm
 
 User = get_user_model()
 
 def home(request):
     leaderboard = User.objects.order_by("-wins", "-elo_rating")[:10]
-
-    return render(request, "home.html", {
-        "leaderboard": leaderboard
-    })
+    return render(request, "home.html", {"leaderboard": leaderboard})
 
 @login_required
 def dashboard(request):
     return render(request, "dashboard.html")
-
-from django.shortcuts import redirect
-from django.contrib.auth import login
-from .forms import RegisterForm
 
 def register(request):
     if request.method == "POST":
@@ -33,7 +24,3 @@ def register(request):
         form = RegisterForm()
 
     return render(request, "register.html", {"form": form})
-
-from .models import Game
-from django.shortcuts import get_object_or_404
-
